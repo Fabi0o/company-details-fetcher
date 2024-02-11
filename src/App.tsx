@@ -1,11 +1,18 @@
 import "./App.css";
-import { Button } from "@mui/material";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+
+const darkTheme = createTheme({
+  palette: {
+    mode: "dark",
+  },
+});
 
 function App() {
   return (
-    <>
-      <Button variant="contained">Click Me!</Button>
-    </>
+    <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
+    </ThemeProvider>
   );
 }
 
