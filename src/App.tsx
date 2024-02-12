@@ -4,6 +4,8 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Header from "./components/Header";
 import SearchInput from "./components/SearchInput";
 import CompanyDataCard from "./components/CompanyDataCard";
+import { useState } from "react";
+import CompanyData from "../types/companyData";
 
 const darkTheme = createTheme({
   palette: {
@@ -12,12 +14,16 @@ const darkTheme = createTheme({
 });
 
 function App() {
+  const [currentCompanyData, setCurrentCompanyData] = useState<CompanyData>();
+
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
       <Header />
-      <SearchInput />
-      <CompanyDataCard />
+      <SearchInput setCurrentCompanyData={setCurrentCompanyData} />
+      {currentCompanyData && (
+        <CompanyDataCard currentCompanyData={currentCompanyData} />
+      )}
     </ThemeProvider>
   );
 }
