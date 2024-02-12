@@ -14,7 +14,7 @@ export default function SearchInput() {
         justifyContent: "center",
       }}
     >
-      <TextField id="outlined-basic" label="Outlined" variant="outlined" />
+      <TextField label="NIP" variant="outlined" />
       <IconButton type="submit" aria-label="search">
         <Search />
       </IconButton>
