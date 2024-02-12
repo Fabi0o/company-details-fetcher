@@ -8,7 +8,7 @@ export default function SearchInput() {
       component="form"
       sx={{
         p: "2px 4px",
-        mt: "10px",
+        m: "10px",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
