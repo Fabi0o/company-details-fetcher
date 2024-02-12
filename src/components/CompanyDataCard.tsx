@@ -14,13 +14,13 @@ export default function CompanyDataCard({ currentCompanyData }: Props) {
             {currentCompanyData.name}
           </Typography>
           <Typography gutterBottom variant="h6" component="div">
-            NIP: 123456
+            NIP: {currentCompanyData.NIP}
           </Typography>
           <Typography gutterBottom variant="h6" component="div">
-            Address: 123456
+            Address: {currentCompanyData.address}
           </Typography>
           <Typography gutterBottom variant="h6" component="div">
-            Acoount Number: 123456
+            Account Number: {currentCompanyData.accountNumbers}
           </Typography>
         </CardContent>
       </Card>

@@ -34,7 +34,7 @@ export default function SearchInput({ setCurrentCompanyData }: Props) {
           name: result.subject.name,
           NIP: Number(result.subject.nip),
           address: result.subject.residenceAddress,
-          accountNumbers: result.subject.accountNumbers.map((el) => Number(el)),
+          accountNumbers: result.subject.accountNumbers,
         });
       });
   };
