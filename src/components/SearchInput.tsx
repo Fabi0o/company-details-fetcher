@@ -21,7 +21,7 @@ export default function SearchInput({ setCurrentCompanyData }: Props) {
 
   const fetchCompanyData = (nip: number) => {
     nip;
-    fetch(`http://localhost:3000/`)
+    fetch(`http://localhost:3000/${nip}`)
       .then((res) => res.json())
       .then((data) => setCurrentCompanyData(data));
   };
