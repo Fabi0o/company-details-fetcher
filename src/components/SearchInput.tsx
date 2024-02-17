@@ -2,19 +2,12 @@ import { Box, TextField } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import { Search } from "@mui/icons-material";
 import React, { ChangeEvent, SetStateAction, useState } from "react";
-import CompanyData from "../../types/companyData";
+import { CompanyData } from "../../types/companyData";
 
 interface Props {
   setCurrentCompanyData: React.Dispatch<
     SetStateAction<CompanyData | undefined>
   >;
-}
-
-interface fetchResult {
-  name: string;
-  nip: string;
-  residenceAddress: string;
-  accountNumbers: string[];
 }
 
 export default function SearchInput({ setCurrentCompanyData }: Props) {
@@ -27,19 +20,12 @@ export default function SearchInput({ setCurrentCompanyData }: Props) {
   };
 
   const fetchCompanyData = (nip: number) => {
-    fetch(`https://wl-api.mf.gov.pl/api/search/nip/${nip}?date=2024-02-02`)
+    nip;
+    fetch(`http://localhost:3000/`)
       .then((res) => res.json())
-      .then(({ result }: { result: { subject: fetchResult } }) => {
-        const { subject } = result;
-
-        setCurrentCompanyData({
-          name: subject.name,
-          NIP: Number(subject.nip),
-          address: subject.residenceAddress,
-          accountNumbers: subject.accountNumbers,
-        });
-      });
+      .then((data) => setCurrentCompanyData(data));
   };
+
   return (
     <Box
       component="form"
