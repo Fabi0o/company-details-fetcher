@@ -1,8 +1,9 @@
 import { Box, TextField } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import { Search } from "@mui/icons-material";
-import React, { ChangeEvent, SetStateAction, useState } from "react";
+import React, { SetStateAction } from "react";
 import { CompanyData } from "../../types/companyData";
+import { useForm } from "react-hook-form";
 
 interface Props {
   setCurrentCompanyData: React.Dispatch<
@@ -11,19 +12,19 @@ interface Props {
 }
 
 export default function SearchInput({ setCurrentCompanyData }: Props) {
-  const [nip, setNip] = useState(0);
+  const form = useForm<{ nip: string }>({ defaultValues: { nip: "" } });
 
-  const onChangeInput = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setNip(Number(e.target.value));
-  };
+  const { register, handleSubmit, formState } = form;
+  const { errors } = formState;
 
   const fetchCompanyData = (nip: number) => {
-    nip;
     fetch(`http://localhost:3000/${nip}`)
       .then((res) => res.json())
       .then((data) => setCurrentCompanyData(data));
+  };
+
+  const onSubmit = (data: { nip: string }) => {
+    fetchCompanyData(Number(data.nip));
   };
 
   return (
@@ -36,17 +37,20 @@ export default function SearchInput({ setCurrentCompanyData }: Props) {
         alignItems: "center",
         justifyContent: "center",
       }}
+      noValidate
+      onSubmit={handleSubmit(onSubmit)}
     >
       <TextField
         label="NIP"
         variant="outlined"
-        onChange={(e) => onChangeInput(e)}
+        required
+        error={!!errors.nip}
+        helperText={errors.nip?.message}
+        {...register("nip", {
+          required: "NIP is required!",
+        })}
       />
-      <IconButton
-        type="button"
-        aria-label="search"
-        onClick={() => fetchCompanyData(nip)}
-      >
+      <IconButton type="submit" aria-label="search">
         <Search />
       </IconButton>
     </Box>
