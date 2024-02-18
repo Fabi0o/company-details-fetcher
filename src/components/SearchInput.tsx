@@ -42,6 +42,7 @@ export default function SearchInput({ setCurrentCompanyData }: Props) {
     >
       <TextField
         label="NIP"
+        type="number"
         variant="outlined"
         required
         error={!!errors.nip}
