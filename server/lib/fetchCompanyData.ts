@@ -1,7 +1,9 @@
 import { CompanyDataFetchResult } from "../../types/companyData";
 
 export default function fetchCompanyData(nip: number) {
-  return fetch(`${process.env.WHITE_LIST_URL}${nip}?date=2024-02-02`)
+  const currentDate = new Date().toISOString().slice(0, 10);
+
+  return fetch(`${process.env.WHITE_LIST_URL}${nip}?date=${currentDate}`)
     .then((res) => res.json())
     .then(({ result }: { result: { subject: CompanyDataFetchResult } }) => {
       const { subject } = result;
