@@ -5,7 +5,7 @@ import Header from "./components/Header";
 import SearchInput from "./components/SearchInput";
 import CompanyDataCard from "./components/CompanyDataCard";
 import { useState } from "react";
-import CompanyData from "../types/companyData";
+import { CompanyData } from "../types/companyData";
 
 const darkTheme = createTheme({
   palette: {
