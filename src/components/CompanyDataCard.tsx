@@ -20,7 +20,9 @@ export default function CompanyDataCard({ currentCompanyData }: Props) {
             Address: {currentCompanyData.address}
           </Typography>
           <Typography gutterBottom variant="h6" component="div">
-            Account Number:
+            {currentCompanyData.accountNumbers.length > 1
+              ? "Account Numbers:"
+              : "Account Number:"}
           </Typography>
           <Typography gutterBottom component="ol">
             {currentCompanyData.accountNumbers.map((accNum) => (
